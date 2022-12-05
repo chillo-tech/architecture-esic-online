@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  strapi:
+    container_name: back-esic-online
+    image: strapi/strapi:3.6.8-alpine
+    environment:
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=postgres-15.1-alpine
+      - DATABASE_NAME=db-esic-online
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - AUTHENTICATION_DATABASE=db-esic-online
+    volumes:
+      - esic-online-config:/opt/app/config
+      - esic-online-src:/opt/app/src
+    ports:
+      - '1337:1337'
+    networks:
+      - applications-network
+ 
+  adminer-4.8.1:
+    image: adminer:4.8.1
+    container_name: adminer-4.8.1
+    restart: always
+    ports:
+      - 8082:8080
+    networks:
+      - applications-network
+  postgres-15.1-alpine:
+    image: postgres:15.1-alpine
+    restart: always
+    container_name: postgres-15.1-alpine
+    environment:
+      POSTGRES_DB: db-esic-online
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 25432:5432
+    volumes:
+      - esic-online:/var/lib/postgresql/data
+      - ./esic_online.postgres.v2.sql:/docker-entrypoint-initdb.d/esic_online.postgres.v2.sql
+    networks:
+      - applications-network
+volumes:
+  esic-online:
+  esic-online-config:
+  esic-online-src:
+
+networks:
+  applications-network:
