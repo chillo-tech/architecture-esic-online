@@ -17,7 +17,6 @@ services:
       - '1337:1337'
     networks:
       - applications-network
- 
   adminer-4.8.1:
     image: adminer:4.8.1
     container_name: adminer-4.8.1
@@ -36,9 +35,6 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 25432:5432
-    volumes:
-      - esic-online:/var/lib/postgresql/data
-      - ./esic_online.postgres.v2.sql:/docker-entrypoint-initdb.d/esic_online.postgres.v2.sql
     networks:
       - applications-network
 volumes:
