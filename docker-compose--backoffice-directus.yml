@@ -12,6 +12,14 @@ services:
       POSTGRES_USER: PROD_DATABASE_USERNAME
       POSTGRES_PASSWORD: PROD_DATABASE_PASSWORD
       POSTGRES_DB: 'esic-online-database'
+  esic-online-database-ihm:
+    container_name: esic-online-database-ihm
+    image: adminer:4.8.1-standalone
+    restart: always
+    ports:
+      - 8057:8080
+    networks:
+      - applications-network
   esic-online-cache:
     container_name: esic-online-cache
     restart: always

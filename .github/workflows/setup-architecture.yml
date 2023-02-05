@@ -78,6 +78,6 @@ jobs:
         username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
         key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
         script: |
-          #docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
-          #docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
+          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
+          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
           docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml up -d
