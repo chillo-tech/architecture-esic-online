@@ -31,22 +31,20 @@ jobs:
       - uses: actions/checkout@master
       - name: update configs
         run: |
-         sed -i "s|PROD_DATABASE_USERNAME|${{ secrets.PROD_APPLICATIONS_PORT }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_DATABASE_PASSWORD|${{ secrets.PROD_DATABASE_PASSWORD }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_ADMINISTRATION_USERNAME|${{ secrets.PROD_ADMINISTRATION_USERNAME }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_ADMINISTRATION_PASSWORD|${{ secrets.PROD_ADMINISTRATION_PASSWORD }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_SMTP_USERNAME|${{ secrets.PROD_SMTP_USERNAME }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_SMTP_PASSWORD|${{ secrets.PROD_SMTP_PASSWORD }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_ADMINISTRATION_TOKEN|${{ secrets.PROD_ADMINISTRATION_TOKEN }}|g" docker-compose--backoffice-directus.yml
-         sed -i "s|PROD_ADMINISTRATION_SECRET|${{ secrets.PROD_ADMINISTRATION_SECRET }}|g" docker-compose--backoffice-directus.yml
-
+            sed -i "s|PROD_SMTP_USERNAME|${{ secrets.PROD_SMTP_USERNAME }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_SMTP_PASSWORD|${{ secrets.PROD_SMTP_PASSWORD }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_ADMINISTRATION_TOKEN|${{ secrets.PROD_ADMINISTRATION_TOKEN }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_ADMINISTRATION_SECRET|${{ secrets.PROD_ADMINISTRATION_SECRET }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_DATABASE_USERNAME|${{ secrets.PROD_DATABASE_USERNAME }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_DATABASE_PASSWORD|${{ secrets.PROD_DATABASE_PASSWORD }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_ADMINISTRATION_USERNAME|${{ secrets.PROD_ADMINISTRATION_USERNAME }}|g" docker-compose--backoffice-directus.yml
+            sed -i "s|PROD_ADMINISTRATION_PASSWORD|${{ secrets.PROD_ADMINISTRATION_PASSWORD }}|g" docker-compose--backoffice-directus.yml
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-          password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           source: "docker-compose--backoffice-directus.yml"
           target: "/opt/applications/esic/architecture-esic-online"
@@ -62,9 +60,8 @@ jobs:
         host: ${{ secrets.PROD_APPLICATIONS_HOST }}
         port: ${{ secrets.PROD_APPLICATIONS_PORT }}
         username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-        password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
         key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
         script: |
-          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
-          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
-          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml up -d
+          docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
+          docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
+          docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml up -d
