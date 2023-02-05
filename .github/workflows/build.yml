@@ -31,14 +31,14 @@ jobs:
       - uses: actions/checkout@master
       - name: update configs
         run: |
-         sed -i 's|PROD_DATABASE_USERNAME|${{ secrets.PROD_APPLICATIONS_PORT }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_DATABASE_PASSWORD|${{ secrets.PROD_DATABASE_PASSWORD }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_ADMINISTRATION_USERNAME|${{ secrets.PROD_ADMINISTRATION_USERNAME }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_ADMINISTRATION_PASSWORD|${{ secrets.PROD_ADMINISTRATION_PASSWORD }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_SMTP_USERNAME|${{ secrets.PROD_SMTP_USERNAME }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_SMTP_PASSWORD|${{ secrets.PROD_SMTP_PASSWORD }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_ADMINISTRATION_TOKEN|${{ secrets.PROD_ADMINISTRATION_TOKEN }}|g' docker-compose--backoffice-directus.yml
-         sed -i 's|PROD_ADMINISTRATION_SECRET|${{ secrets.PROD_ADMINISTRATION_SECRET }}|g' docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_DATABASE_USERNAME|${{ secrets.PROD_APPLICATIONS_PORT }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_DATABASE_PASSWORD|${{ secrets.PROD_DATABASE_PASSWORD }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_ADMINISTRATION_USERNAME|${{ secrets.PROD_ADMINISTRATION_USERNAME }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_ADMINISTRATION_PASSWORD|${{ secrets.PROD_ADMINISTRATION_PASSWORD }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_SMTP_USERNAME|${{ secrets.PROD_SMTP_USERNAME }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_SMTP_PASSWORD|${{ secrets.PROD_SMTP_PASSWORD }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_ADMINISTRATION_TOKEN|${{ secrets.PROD_ADMINISTRATION_TOKEN }}|g" docker-compose--backoffice-directus.yml
+         sed -i "s|PROD_ADMINISTRATION_SECRET|${{ secrets.PROD_ADMINISTRATION_SECRET }}|g" docker-compose--backoffice-directus.yml
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
