@@ -15,7 +15,7 @@ jobs:
         host: ${{ secrets.PROD_APPLICATIONS_HOST }}
         port: ${{ secrets.PROD_APPLICATIONS_PORT }}
         username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
-        password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
+        #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
         key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
         script: |
           sudo mkdir -p /opt/applications/esic/architecture-esic-online
@@ -28,7 +28,6 @@ jobs:
     needs: create-folder
     steps:
       - uses: actions/checkout@master
-
       - name: update configs
         run: |
          sed -i 's|PROD_DATABASE_USERNAME|${{ secrets.PROD_APPLICATIONS_PORT }}|g' docker-compose--backoffice-directus.yml
@@ -54,7 +53,7 @@ jobs:
   run-container:
     name: "Run container"
     runs-on: ubuntu-latest
-    needs: [dockerize, copy-configs]
+    needs: [copy-configs]
     steps:
     - name: Run container
       uses: appleboy/ssh-action@master
