@@ -9,11 +9,19 @@ jobs:
     name: Create folder
     runs-on: ubuntu-latest
     steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.PROD_APPLICATIONS_HOST }}
+        username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
+        password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
+        port: ${{ secrets.PROD_APPLICATIONS_PORT }}
+        script: whoami
     - name: Create folder
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.PROD_APPLICATIONS_HOST }}
-        port: ${{ secrets.PROD_APPLICATIONS_PORT }}
+        #port: ${{ secrets.PROD_APPLICATIONS_PORT }}
         username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
         #password: ${{ secrets.PROD_APPLICATIONS_PASSWPRD }}
         key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
