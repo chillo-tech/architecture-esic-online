@@ -1,6 +1,3 @@
 *
-.*
-!**/*.yml
-!.*/**/*.yml
 !.gitignore
 !README.md
