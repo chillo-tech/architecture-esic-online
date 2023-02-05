@@ -49,7 +49,7 @@ jobs:
           source: "docker-compose--backoffice-directus.yml"
           target: "/opt/applications/esic/architecture-esic-online"
   check-config:
-    name: "Run container"
+    name: "check config"
     runs-on: ubuntu-latest
     needs: [copy-configs]
     steps:
@@ -76,6 +76,6 @@ jobs:
         username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
         key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
         script: |
-          docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
-          docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
-          docker-compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml up -d
+          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
+          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
+          docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml up -d
