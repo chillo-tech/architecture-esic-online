@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:    
       - ./esic-online-database0602.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./data/esic-online-database:/var/lib/postgresql/data
+      - esic-online-database:/var/lib/postgresql/data
     networks:
       - applications-network
     environment:
@@ -85,6 +85,7 @@ services:
       # PUBLIC_URL: 'https://directus.example.com'
 
 volumes:
+  esic-online-database:
   esic-online-backoffice:
   esic-online-backoffice-config:
   esic-online-backoffice-src:
