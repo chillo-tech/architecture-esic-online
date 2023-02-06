@@ -89,4 +89,5 @@ jobs:
         script: |
           docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml stop
           docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml rm -f
+          docker volume rm architecture-esic-online_esic-online-database
           docker compose -f /opt/applications/esic/architecture-esic-online/docker-compose--backoffice-directus.yml up -d
