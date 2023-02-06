@@ -60,7 +60,7 @@ services:
       DB_USER: PROD_DATABASE_USERNAME
       DB_PASSWORD: PROD_DATABASE_PASSWORD
 
-      CACHE_ENABLED: 'true'
+      CACHE_ENABLED: 'false'
       CACHE_STORE: 'redis'
       CACHE_REDIS: 'redis://esic-online-cache:6379'
 
