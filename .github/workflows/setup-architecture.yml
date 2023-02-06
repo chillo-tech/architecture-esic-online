@@ -39,7 +39,7 @@ jobs:
             sed -i "s|PROD_DATABASE_PASSWORD|${{ secrets.PROD_DATABASE_PASSWORD }}|g" docker-compose--backoffice-directus.yml
             sed -i "s|PROD_ADMINISTRATION_USERNAME|${{ secrets.PROD_ADMINISTRATION_USERNAME }}|g" docker-compose--backoffice-directus.yml
             sed -i "s|PROD_ADMINISTRATION_PASSWORD|${{ secrets.PROD_ADMINISTRATION_PASSWORD }}|g" docker-compose--backoffice-directus.yml
-      - name: copy file via ssh password
+      - name: copy yaml file via ssh password
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.PROD_APPLICATIONS_HOST }}
@@ -47,6 +47,15 @@ jobs:
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
           source: "docker-compose--backoffice-directus.yml"
+          target: "/opt/applications/esic/architecture-esic-online"
+      - name: copy sql file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.PROD_APPLICATIONS_HOST }}
+          port: ${{ secrets.PROD_APPLICATIONS_PORT }}
+          username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
+          key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
+          source: "esic-online-database0602.sql"
           target: "/opt/applications/esic/architecture-esic-online"
   check-config:
     name: "check config"

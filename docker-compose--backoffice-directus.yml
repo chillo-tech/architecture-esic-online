@@ -4,7 +4,8 @@ services:
     container_name: esic-online-database
     image: postgis/postgis:13-master
     restart: always
-    volumes:
+    volumes:    
+      - ./esic-online-database0602.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/esic-online-database:/var/lib/postgresql/data
     networks:
       - applications-network
@@ -20,6 +21,8 @@ services:
       - 8057:8080
     networks:
       - applications-network
+    depends_on:
+      - esic-online-database
   esic-online-cache:
     container_name: esic-online-cache
     restart: always

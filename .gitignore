@@ -1,3 +1,4 @@
 data
 .env
 *.sql
+!esic-online-database06022023.sql
