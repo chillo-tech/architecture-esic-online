@@ -5,7 +5,7 @@ services:
     image: postgis/postgis:13-master
     restart: always
     volumes:    
-      - ./esic-online-database06022023.sql:/docker-entrypoint-initdb.d/esic-online-database06022023.sql
+      #- ./esic-online-database06022023.sql:/docker-entrypoint-initdb.d/esic-online-database06022023.sql
       - esic-online-database:/var/lib/postgresql/data
     networks:
       - applications-network
