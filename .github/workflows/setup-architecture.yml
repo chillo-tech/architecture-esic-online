@@ -55,7 +55,7 @@ jobs:
           port: ${{ secrets.PROD_APPLICATIONS_PORT }}
           username: ${{ secrets.PROD_APPLICATIONS_USERNAME }}
           key: ${{ secrets.PROD_APPLICATIONS_SSH_PRIVATE_KEY }}
-          source: "esic-online-database0602.sql"
+          source: "esic-online-database06022023.sql"
           target: "/opt/applications/esic/architecture-esic-online"
   check-config:
     name: "check config"
