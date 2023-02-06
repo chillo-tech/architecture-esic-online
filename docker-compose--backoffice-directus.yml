@@ -69,14 +69,14 @@ services:
 
       EMAIL_FROM: PROD_ADMINISTRATION_USERNAME
       EMAIL_TRANSPORT: smtp
-      #EMAIL_SMTP_HOST: smtp-relay.sendinblue.com
-      EMAIL_SMTP_HOST: smtp.gmail.com
+      EMAIL_SMTP_HOST: smtp-relay.sendinblue.com
+      #EMAIL_SMTP_HOST: smtp.gmail.com
       EMAIL_SMTP_PORT: 587
 
-      #EMAIL_SMTP_PASSWORD: dqm1hzycTgOnCQ2s
-      #EMAIL_SMTP_USER: accueil@chillo.tech
-      EMAIL_SMTP_PASSWORD: PROD_SMTP_PASSWORD
-      EMAIL_SMTP_USER: PROD_SMTP_USERNAME
+      EMAIL_SMTP_PASSWORD: dqm1hzycTgOnCQ2s
+      EMAIL_SMTP_USER: accueil@chillo.tech
+      #EMAIL_SMTP_PASSWORD: PROD_SMTP_PASSWORD
+      #EMAIL_SMTP_USER: PROD_SMTP_USERNAME
       # Make sure to set this in production
       # (see https://docs.directus.io/self-hosted/config-options#general)
       # PUBLIC_URL: 'https://directus.example.com'
